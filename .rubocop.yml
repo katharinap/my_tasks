@@ -1,0 +1,13 @@
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+
+# Offense count: 4
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'app/helpers/*'
+    - 'app/mailers/*'
+    - 'app/models/*'
