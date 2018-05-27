@@ -57,6 +57,8 @@ group :development do
 
   gem 'annotate'
   gem 'rubocop'
+
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :test do
@@ -65,4 +67,6 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+
+  gem 'database_cleaner'
 end
