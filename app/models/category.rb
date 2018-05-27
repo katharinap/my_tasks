@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+ 
 # == Schema Information
 #
 # Table name: categories
@@ -11,5 +11,6 @@
 #
 
 class Category < ApplicationRecord
-  validates :name, uniqueness: true
+  has_many :tasks
+  validates :name, uniqueness: true, presence: true
 end
