@@ -4,10 +4,14 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
 
-# Offense count: 4
 Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'app/helpers/*'
     - 'app/mailers/*'
     - 'app/models/*'
+
+Metrics/LineLength:
+  Exclude:
+    - 'spec/**/*'
+    

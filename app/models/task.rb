@@ -14,5 +14,6 @@
 
 class Task < ApplicationRecord
   belongs_to :category
+  has_many :activities
   validates :description, presence: true
 end
