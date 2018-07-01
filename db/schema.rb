@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_01_000209) do
+ActiveRecord::Schema.define(version: 2018_07_01_031554) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_07_01_000209) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
+    t.decimal "duration_in_hours"
     t.index ["category_id"], name: "index_tasks_on_category_id"
   end
 

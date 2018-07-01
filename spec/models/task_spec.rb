@@ -4,12 +4,13 @@
 #
 # Table name: tasks
 #
-#  id          :integer          not null, primary key
-#  category_id :integer
-#  description :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  date        :date
+#  id                :integer          not null, primary key
+#  category_id       :integer
+#  description       :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  date              :date
+#  duration_in_hours :decimal(, )
 #
 
 require 'rails_helper'
@@ -18,10 +19,11 @@ RSpec.describe Task, type: :model do
   describe '.new' do
     let(:category) { Category.create(name: 'Something') }
 
-    it 'does not allow to create a task without a description or date' do
-      expect(Task.new(category_id: category.id, date: Date.today)).not_to be_valid
-      expect(Task.new(category_id: category.id, description: 'step two')).not_to be_valid
-      expect(Task.new(category_id: category.id, date: Date.today, description: 'step two')).to be_valid
+    it 'does not allow to create a task without a description, date or duration' do
+      expect(Task.new(category_id: category.id, duration_in_hours: 1.0, date: Date.today)).not_to be_valid
+      expect(Task.new(category_id: category.id, duration_in_hours: 1.0, description: 'step two')).not_to be_valid
+      expect(Task.new(category_id: category.id, date: Date.today, description: 'step two')).not_to be_valid
+      expect(Task.new(category_id: category.id, duration_in_hours: 1.0, date: Date.today, description: 'step two')).to be_valid
     end
   end
 
@@ -29,9 +31,9 @@ RSpec.describe Task, type: :model do
     let(:category) { Category.create(name: 'Something') }
 
     def create_tasks
-      %w[one two three].each { |desc| category.tasks.create(description: "task #{desc}", date: Date.new(2018, 6, 27)) }
-      %w[one].each { |desc| category.tasks.create(description: "task #{desc}", date: Date.new(2018, 6, 28)) }
-      %w[one].each { |desc| category.tasks.create(description: "task #{desc}", date: Date.new(2018, 6, 29)) }
+      %w[one two three].each { |desc| category.tasks.create(description: "task #{desc}", duration_in_hours: 1.0, date: Date.new(2018, 6, 27)) }
+      %w[one].each { |desc| category.tasks.create(description: "task #{desc}", duration_in_hours: 1.0, date: Date.new(2018, 6, 28)) }
+      %w[one].each { |desc| category.tasks.create(description: "task #{desc}", duration_in_hours: 1.0, date: Date.new(2018, 6, 29)) }
     end
 
     before :each do
