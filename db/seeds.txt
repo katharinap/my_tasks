@@ -1,0 +1,324 @@
+<2018-04-16 Mon>
+Blender - PCM meastable: 0.25
+Blender - JIG tests: 0.75
+
+<2018-04-17 Tue>
+Blender - JIG tests: 0.25
+Blender - PCM meastable: 0.25
+DFI Tool - tests: 0.5
+
+<2018-04-18 Wed>
+CVGuide - test request form support: 0.25
+DFI Tool - graphql: 0.25
+DFI Tool - tests: 0.5
+
+<2018-04-19 Thu>
+DFI Tool - block & sub block building spec & code base: 1.0
+
+<2018-04-20 Fri>
+DFI Tool - started with gui: 0.75
+CVSF Support - ruby/rake: 0.2
+CVSF Support - dfi pad dialog: 0.05
+
+<2018-04-23 Mon>
+Blender Support - unsymmetric cell hierarchy (Lara): 0.125
+Blender Support - sf support for oa generators (Amit): 0.125
+Blender - pcm meeting: 0.25
+CVSF Support - vci pack add check_instids step: 0.25
+
+<2018-04-24 Tue>
+Blender - pcm: 0.5
+DFI Tool - gui: 0.5
+
+<2018-04-25 Wed>
+DFI Support - support packingType/packingArrangement instead of designAttr2 for vci_pack_frame: 0.25
+DFI Tool - gui & sub block building: 0.75
+
+<2018-04-26 Thu>
+Blender Support - zda jig tests: 0.55
+Blender Support - sf support for amit: 0.1
+Blender Support - identical pgs in the same meastable (pcm, angie): 0.1
+DFI Support - optionally use doe factor packingGroupFactors instead of packSeq: 0.25
+
+<2018-04-27 Fri>
+Blender Support - sf support for messy place files (pss1718/7lp/beol2cv): 0.25
+DFI Tool - build sub blocks: 0.5
+CVSF Support - ruby training: 0.25
+
+<2018-04-30 Mon>
+Blender - jig tests: 0.125
+CVSF - Admin: 0.125
+CVSF Support - cds tech lib issue, gds2bbox/XML issue: 0.125
+CVSF Support - skill support for chenyang: 0.125
+Blender Support - support for pss1718/7lp/beol2cv (place file prg settings): 0.125
+DFI Tool - generate sub blocks: 0.327
+
+<2018-05-01 Tue>
+Blender - release 2.28.2: 0.25
+DFI Tool - call runbatch_oa to generate cells: 0.25
+DFI Tool - debugging of automatical sub block/block assignment failures: 0.25
+DFI Tool - implemented automatic email notification for update errors: 0.15
+DFI Tool - delete obsolete/empty blocks: 0.1
+
+<2018-05-02 Wed>
+Blender Support - warning messages ca meastable, bboxKey error messages for weird re-use case: 0.125
+DFI Tool - reviewed issues with data collected so far: 0.5
+DFI Tool - debugging of issues with rec update jobs & error emails: 0.25
+CVSF - discussion with Nobu and Stephen about permission issues with new pss1601 cv: 0.125
+
+<2018-05-03 Thu>
+DFI Tool - added db tables to track sub block actions: 0.5
+DFI Tool - graphql queries and mutations: 0.375
+CVSF Support - debugging of stuck gds export issue in drc run: 0.125
+
+<2018-05-04 Fri>
+Blender - ro: read interleave from pad map: 0.125
+Blender Support - bboxKey error messages for weird re-use case, check tp cap updates: 0.125
+CVSF Support - ruby training: 0.25
+DFI Tool - added action upload to gui, show sub block actions in web app: 0.625
+
+<2018-05-07 Mon>
+DFI Tool - display sheet errors in sub block gui: 0.125
+DFI Tool - added blocks to graphql queries: 0.125
+DFI Tool - started with dfi_pack_blocks gui: 0.5
+CVSF Support - cvsys meeting: 0.125
+CVSF Support - netextract support for pg with only floating pins: 0.125
+
+<2018-05-08 Tue>
+CVSF Support - skip marked cells during xml export: 0.4
+CVSF Support - debugging of rec segfault: 0.1
+Blender Support - ka meastable support for special amd case: 0.1
+Blender Support - sf meastable support: 0.05
+Blender Support - sf don't create layout xml file automatically: 0.1
+CVSF Support - happy hour and company meeting: 0.25
+
+<2018-05-09 Wed>
+DFI Tool - block gui: 0.5
+CVSF Support - xml export speed improvements: 0.5
+
+<2018-05-10 Thu>
+DFI Tool - build blocks: 0.5
+DFI Tool - added block user actions: 0.25
+Blender Support - sf: 0.25
+
+<2018-05-11 Fri>
+CVSF - cvsys meeting: 0.125
+DFI Support - meeting about DFI collateral: 0.125
+DFI Tool - release mechanism (ci setup, encryption): 0.75
+
+<2018-05-14 Mon>
+DFI Tool - ci setup & release mechanism: 1.0
+
+<2018-05-15 Tue>
+Blender - added pad map as source for interleave: 0.5
+DFI Tool - release mechanism, encryption issue: 0.375
+CVSF Support - netextract support: 0.125
+
+<2018-05-16 Wed>
+CVSF Support - releases for blender, cvsf: 0.125
+Blender - meeting about jig ref: 0.125
+DFI Support - meeting about collaterals: 0.25
+DFI Tool - introduction of gui Tool, fixes: 0.5
+
+<2018-05-17 Thu>
+Blender - pcm meastable: 0.125
+Blender Support - smart ka meastable pss1718/7lp/xfeolsr6cv: 0.375
+DFI Tool - db backups: 0.1
+DFI Tool - use common vendor dir for releases: 0.2
+DFI Tool - encryption debugging: 0.2
+
+<2018-05-18 Fri>
+Blender Support - smart ka meastable pss1718/7lp/xfeolsr6cv: 0.25
+Blender Support - pss1718/7lp/xfeolsr6cv, ka support: 0.25
+DFI Tool - release mechanism: 0.4
+DFI Tool - renamed blocks: 0.1
+
+<2018-05-21 Mon>
+Blender Support - pss1718 ka support: 0.125
+CVSF Support - netextract layer discussion: 0.125
+DFI Tool - gui: 0.75
+
+<2018-05-22 Tue>
+CVSF Support - netextract layer discussion: 0.125
+DFI Tool - looking for sheet with padExtraction values: 0.125
+CVSF - cv cell hierarchy server: 0.75
+
+<2018-05-23 Wed>
+Blender - pcm meastable, release: 0.125
+CVSF Support - meeting: 0.125
+CVSF - cv-hierarchy server setup: 0.5
+CVSF - graphql setup: 0.25
+
+<2018-05-24 Thu>
+Blender Support - pcm training for angie and chenyang, debugging for error log message in PVG due to missing layout cells: 0.25
+DFI Tool - update test cases for DSF/padExtraction: 0.55
+DFI Tool - bug fix for missing side filler column: 0.2
+
+<2018-05-25 Fri>
+DFI Tool - DSF: 1.0
+
+<2018-05-28 Mon>
+Holiday - Memorial Day: 1.0
+
+<2018-05-29 Tue>
+Blender Support - padInterleave, pgSide settings: 0.125
+DFI Tool - create pads file: 0.25
+DFI Tool - added DSF test cases: 0.25
+DFI Tool - upload cell hierarchy: 0.25
+CVSF - emacs installation: 0.125
+
+<2018-05-30 Wed>
+CVSF - cvsys meeting, ruby Tool release mechanism: 0.25
+DFI Tool - store econnections: 0.75
+
+<2018-05-31 Thu>
+CVSF - rec api: added layer information: 0.625
+CVSF Support - techlib support for angie: 0.125
+Blender - added support for external post processing scripts: 0.125
+DFI Tool - display release in Toolbar: 0.125
+
+<2018-06-01 Fri>
+Blender - release 2.30.0: 0.125
+CVSF - rec api: 0.25
+DFI Tool - import cell hierarchy: 0.2
+DFI Tool - display cell hierarchy: 0.3
+DFI Support - john ren: 0.125
+
+<2018-06-04 Mon>
+Blender Support - added check of the format of measTableType to meastable_verify: 0.1
+CVGuide - debugging why recsheet#show crashed for one sheet: 0.1
+CVSF - meeting: 0.125
+CVSF - cv-hierarchy views: 0.675
+
+<2018-06-05 Tue>
+CVGuide - update two projects with out-dated scale factors: 0.1
+CVSF Support - calibre installation: 0.1
+DFI Support - verification meeting: 0.2
+DFI Support - sp meeting: 0.2
+DFI Tool - get lib/cell name from global database: 0.3
+DFI Tool - upload frame cell info to cv-hierarchy db: 0.1
+
+<2018-06-06 Wed>
+CVSF Support - dfi pack presentation: 0.2
+DFI Support - collateral meeting: 0.2
+DFI Support - packing arrangement meeting: 0.25
+DFI Support - testcase preparation for MDSF: 0.35
+
+<2018-06-07 Thu>
+CVSF Support - general stuff: 0.1
+DFI Support - CRF implementation: 0.9
+
+<2018-06-08 Fri>
+DFI Support - debugged Nobu's issues to create a test case: 0.1
+DFI Tool - changes to block gui: 0.3
+DFI Tool - reviewed and changed caching logic: 0.6
+
+<2018-06-11 Mon>
+CVSF Support - cvsystem meeting: 0.125
+Blender Support - meeting about measparam handling for pcm: 0.125
+Blender Support - support for nobu, pss1601/N7/xscribecv6: 0.15
+DFI Support - discussion about support for frames for fill cells: 0.1
+DFI Tool - server: skip sheet updates if the rec extraction appears to have failed: 0.1
+DFI Tool - delete obsolete sub blocks and block groups: 0.1
+DFI Tool - update log view, only show the last 500 lines: 0.1
+DFI Tool - added timestamps to sheet db records to be able to track if a sheet already got updated after a check-in: 0.1
+
+<2018-06-12 Tue>
+DFI Tool - specs for graphql: 0.2
+Blender - measparam handling for pcm: 0.1
+DFI Support - updated frame placing script to support dynamical frame building (for PIT filler cells): 0.4
+DFI Tool - debugging of asset pipeline issues: 0.3
+
+<2018-06-13 Wed>
+DFI Support - discussion about config options for possible new packing arrangement with additional ref cells: 0.1
+DFI Tool - made user action display prettier in the web app: 0.5
+DFI Tool - display current user action in guis: 0.4
+
+<2018-06-14 Thu>
+Blender Support - discussion with Shia about post processing script: 0.1
+DFI Support - SP packing type: 0.7
+DFI Support - discussion about special packing requirements for pss1601: 0.2
+
+<2018-06-15 Fri>
+Blender Support - discussion with Shia about post processing script: 0.1
+DFI Support - SP packing type: 0.9
+
+<2018-06-18 Mon>
+Blender Support - ref meastable: support for deadCell: 0.15
+Blender Support - post processing script for kad8: 0.1
+CVSF Support - debugged cvs commit issues: 0.2
+CVSF Support - cvsystem meeting: 0.15
+CVSF Support - discussion with amit about top cell checks: 0.1
+CVSF Support - support for stephen with permission issues: 0.1
+CVSF Support - discussed frame verification script: 0.1
+
+<2018-06-19 Tue>
+Blender - pcm meastable: 0.5
+Blender - ka8 post processing script: 0.2
+DFI Support - debugging of frame verification Tool output: 0.1
+DFI Tool - web view clean up: 0.1
+DFI Tool - added client & pdf id: 0.1
+
+<2018-06-20 Wed>
+CVSF Support - debugging of weird bundle behaviour because of old openssl lib: 0.2
+Blender - pcm meastable: 0.3
+Blender Support - debugging of blender issues with a custom address map: 0.1
+DFI Tool - discussion with Nobu and Stephen about how to proceed for N7PLUS: 0.2
+DFI Tool - showed Nobu how the gui Tool works: 0.1
+DFI Tool - fixed/updated prBoundary extraction for cases where the prBoundary is in (the single) sub cell: 0.1
+
+<2018-06-21 Thu>
+Blender Support - debugging issues with weird packing setup and conflicting entries in rec: 0.1
+Blender - pcm meastable: 0.2
+DFI Support - discussion about packing plan for pss1601: 0.4
+DFI Support - discussion about sp: 0.2
+DFI Tool - only build drc cell for REG blocks: 0.1
+
+<2018-06-22 Fri>
+DFI Support - discussion with Kelvin about packing arrangements: 0.1
+Blender Support - ka8 script update and meastable update/release: 0.1
+Blender - pcm meastable: 0.1
+DFI Tool - re-work of sub block -> block assignment: 0.7
+
+<2018-06-25 Mon>
+DFI Support - debugging of issues with missing padExtraction values in rec db: 0.2
+DFI Support - discussion with Nobu about Tool: 0.1
+DFI Tool - use consistent order of sub blocks for display and generated layout: 0.1
+DFI Tool - NOM SP: 0.6
+
+<2018-06-26 Tue>
+Blender - pcm meastable: 0.1
+CVSF Support - debugging of issues with rec db trigger script: 0.1
+DFI Tool - PM SP: 0.3
+DFI Tool - added packingGroupFactor values to sub block description of NOM sub blocks: 0.1
+DFI Tool - gui, resize sub block tables: 0.1
+DFI Tool - changed SP connection mode: 0.2
+DFI Support - discussion with Nobu: 0.1
+
+<2018-06-27 Wed>
+DFI Support - debugging of rec db update issues: 0.1
+DFI Support - support for nobu: 0.1
+Blender - pda: wrong testLayerList for jig tests for pda: 0.2
+Blender - pcm: 0.1
+CVSF Support - meeting about issues with design flow: 0.1
+CVSF Support - support for conor to setup manual generator: 0.1
+CVSF Support - license setup debugging: 0.1
+DFI Tool - SP: 0.2
+
+<2018-06-28 Thu>
+Blender - release: 0.05
+Blender - pcm: added FT_Vector: 0.1
+Blender - meastable_verify bug fix for --pgMode: 0.1
+CVSF Support - license setup debugging: 0.05
+CVSF Support - download calibre: 0.05
+CVSF Support - dfiguide process debugging: 0.1
+CVSF Support - q&a with shelley: 0.25
+DFI Support - Support for Nobu, mixed blocks: 0.1
+DFI Support - meeting with designers to explain dfi packing flow: 0.1
+Blender Support - debugging of expansion issues: 0.1
+
+<2018-06-29 Fri>
+CVSF Support - delete old calibre versions: 0.2
+DFI Support - license setup tpe, environment setting vci_pack for tpe: 0.1
+DFI Support - setup dev environment in tpe: 0.5
+DFI Support - DSF and mixed packing support: 0.2

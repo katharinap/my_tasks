@@ -1,1 +1,1 @@
-$("<%= escape_javascript(render @task) %>").appendTo("#tasks");
+$("<%= escape_javascript(render @task) %>").appendTo("#tasks-<%= @task.date.as_json %>");

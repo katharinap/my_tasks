@@ -6,8 +6,12 @@
 </div>
 <div id="new-task">
     <%= form_with(model: @task) do |f| %>
-	<%= f.collection_select :category_id, @categories, :id, :name %>
+	<%= f.collection_select :category_id, @categories.sort_by(&:name), :id, :name %>
+	<%= f.label :description %>
 	<%= f.text_field :description %>
+	<%= f.label :duration_in_hours %>
+	<%= f.number_field :duration_in_hours %>
+	<%= f.label :date %>
 	<%= f.date_field :date %>
 	<%= f.submit 'Add Task', class: 'btn btn-sm btn-light' %>
     <% end %>
@@ -15,9 +19,17 @@
 
 <br>
 
-<h1>Tasks</h1>
-<ul id="tasks">
-    <%= render @tasks %>
-</ul>
+<% @tasks.sort_by(&:date).reverse.group_by(&:date).each do |date, tasks| %>
+    <div class="card">
+	<div class="card-title">
+	    <h5><%= date %>: <%= Task.day_pensum(tasks) %></h5>
+	</div>
+	<div class="card-body">
+	    <ul id="tasks-<%= date.as_json %>">
+		<%= render tasks %>
+	    </ul>
+	</div>
+    </div>
+<% end %>
 
 

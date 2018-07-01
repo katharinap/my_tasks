@@ -23,4 +23,11 @@ class Task < ApplicationRecord
   # rubocop:disable Metrics/LineLength
   scope :for_date_range, ->(first, last) { where('date >= ? AND date <= ?', first, last) }
   # rubocop:enable Metrics/LineLength
+
+  class << self
+    def day_pensum(tasks)
+      percent = tasks.map(&:duration_in_hours).reduce(:+) * 100 / 8.0
+      "#{percent.round}%"
+    end
+  end
 end
