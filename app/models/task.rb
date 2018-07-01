@@ -25,9 +25,8 @@ class Task < ApplicationRecord
   # rubocop:enable Metrics/LineLength
 
   class << self
-    def day_pensum(tasks)
-      percent = tasks.map(&:duration_in_hours).reduce(:+) * 100 / 8.0
-      "#{percent.round}%"
+    def relative_day_pensum(tasks)
+      (tasks.map(&:duration_in_hours).reduce(:+) * 100 / 8.0).round
     end
   end
 end
