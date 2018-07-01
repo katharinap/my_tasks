@@ -1,12 +1,23 @@
-<%= link_to '#', class: 'btn btn-light' do %>
-    <i class="fas fa-plus">
-	Add Category
-    </i>
-<% end %>
-<%= link_to '#', class: 'btn btn-light' do %>
-    <i class="fas fa-plus">
-	Add Task
-    </i>
-<% end %>
+<div id="new-category" class="float-right">
+    <%= form_with(model: @category) do |f| %>
+	<%= f.text_field :name %>
+	<%= f.submit 'Add Category', class: 'btn btn-sm btn-light' %>
+    <% end %>
+</div>
+<div id="new-task">
+    <%= form_with(model: @task) do |f| %>
+	<%= f.collection_select :category_id, @categories, :id, :name %>
+	<%= f.text_field :description %>
+	<%= f.date_field :date %>
+	<%= f.submit 'Add Task', class: 'btn btn-sm btn-light' %>
+    <% end %>
+</div>
+
+<br>
+
+<h1>Tasks</h1>
+<ul id="tasks">
+    <%= render @tasks %>
+</ul>
 
 

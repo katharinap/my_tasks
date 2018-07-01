@@ -10,6 +10,7 @@ Style/Documentation:
     - 'app/helpers/*'
     - 'app/mailers/*'
     - 'app/models/*'
+    - 'app/controllers/*'
 
 Metrics/LineLength:
   Exclude:
