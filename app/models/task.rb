@@ -26,7 +26,11 @@ class Task < ApplicationRecord
 
   class << self
     def relative_day_pensum(tasks)
-      (tasks.map(&:duration_in_hours).reduce(:+) * 100 / 8.0).round
+      (duration_in_days(tasks) * 100).round
+    end
+
+    def duration_in_days(tasks)
+      tasks.map(&:duration_in_hours).reduce(:+) / 8.0
     end
   end
 end

@@ -1,0 +1,28 @@
+<h5>Summary</h5>
+<% sum = 0 %>
+<ul class="list-group">
+    <% tasks.group_by(&:category).each do |category, ctasks| %>
+	<% days = Task.duration_in_days(ctasks) %>
+	<% sum += days %>
+	<li class="list-group-item list-group-item-action">
+	    <div class="row">
+		<div class="col-3">
+		    <%= category_tag(category.name) %>
+		</div>
+		<div class="col-9">
+		    <%= days %> days
+		</div>
+	    </div>
+	</li>
+    <% end %>
+    <li class="list-group-item list-group-item-action">
+	<div class="row">
+	    <div class="col-3">
+		<i class="fas fa-angle-double-right fa-lg" title="Sum"></i>
+	    </div>
+	    <div class="col-9">
+		<%= sum %> days
+	    </div>
+	</div>
+    </li>
+</ul>

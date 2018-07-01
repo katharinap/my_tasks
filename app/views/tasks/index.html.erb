@@ -74,7 +74,7 @@
 </script>
 
 <% @tasks_by_week.keys.sort.reverse.each_with_index do |week, week_idx| %>
-    <div class="card">
+    <div class="card mt-3">
 	<div class="card-header" id="header-week-<%= week %>">
 	    <h5 class="mb-0">
 		<button class="btn btn-link text-muted" data-toggle="collapse" data-target="#collapse-week-<%= week %>" aria-expanded="true" aria-controls="collapse-week-<%= week %>">
@@ -103,6 +103,9 @@
 			</div>
 		    </div>
 		<% end %>
+	    </div>
+	    <div class="card-footer">
+		<%= render partial: 'summary', locals: { tasks: @tasks_by_week[week] } %>
 	    </div>
 	</div>
     </div>
