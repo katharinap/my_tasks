@@ -3,5 +3,14 @@
     <%= category_tag(task.category.name) %>
     <%= task.description %>
     <%= task.duration_in_hours %>
+      <a href="#" data-toggle="modal" data-target="#editTaskModal"
+	 data-task-form-action="<%= task_path(task, method: :put) %>"
+	 data-task-category-id="<%= task.category_id %>"
+	 data-task-description="<%= task.description %>"
+	 data-task-duration="<%= task.duration_in_hours %>"
+	 data-task-date="<%= task.date.as_json %>">
+	<i class="fas fa-pen" title="Edit">
+	</i>
+      </a>
   </div>
 </li>

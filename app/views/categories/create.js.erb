@@ -1,3 +1,4 @@
 var currentOptions = $('#task_category_id').html();
 var newOption = '<option value="<%= @category.id %>"><%= @category.name %></option>';
 $('#task_category_id').html(currentOptions + newOption);
+$("#categoryFormModal").modal("hide");
