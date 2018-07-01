@@ -1,2 +1,5 @@
 $("#task-<%= @task.id %>").html($("<%= escape_javascript(render @task) %>"));
-$("#editTaskModal").modal("hide");
+
+$('.modal').each(function(i, obj) {
+  $(this).modal("hide");
+})

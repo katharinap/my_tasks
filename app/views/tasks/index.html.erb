@@ -1,94 +1,28 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskFormModal" data-task-description="" data-task-duration="1">
-    Add Task
-</button>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryFormModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCategoryModal">
     Add Category
 </button>
 
-<div class="modal fade" id="taskFormModal" tabindex="-1" role="dialog" aria-labelledby="taskFormModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-	<div class="modal-content">
-	    <div class="modal-header">
-		<h5 class="modal-title" id="taskFormModalLabel">New Task</h5>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		</button>
-	    </div>
-	    <%= form_with(model: @task) do |f| %>
-		<div class="modal-body">
-		    <div id="new-task" class="form-group">
-			<%= f.collection_select :category_id, @categories.sort_by(&:name), :id, :name, {}, class: "form-control form-control-sm" %>
-			<%= f.text_field :description, class: "form-control form-control-sm task-description", placeholder: "Description" %>
-			<%= f.number_field :duration_in_hours, class: "form-control form-control-sm task-duration", placeholder: "Duration (in hours)" %>
-			<%= f.date_field :date, class: "form-control form-control-sm" %>
-		    </div>
-		</div>
-		<div class="modal-footer">
-		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		    <%= f.submit 'Add Task', class: 'btn btn-outline-primary' %>
-		</div>
-	    <% end %>
-	</div>
-    </div>
-</div>
+<%= render partial: 'categories/form_modal', locals: { category: @category, modal_id: 'newCategoryModal' } %>
 
-<div class="modal fade" id="categoryFormModal" tabindex="-1" role="dialog" aria-labelledby="categoryFormModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-	<div class="modal-content">
-	    <div class="modal-header">
-		<h5 class="modal-title" id="categoryFormModalLabel">New Category</h5>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		</button>
-	    </div>
-	    <%= form_with(model: @category) do |f| %>
-		<div class="modal-body">
-		    <div id="new-category" class="form-group">
-			<%= f.text_field :name, class: "form-control form-control-sm category-name", placeholder: "Name" %>
-		    </div>
-		</div>
-		<div class="modal-footer">
-		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		    <%= f.submit 'Add Category', class: 'btn btn-outline-primary' %>
-		</div>
-	    <% end %>
-	</div>
-    </div>
-</div>
-
-<script>
- $('#taskFormModal').on('show.bs.modal', function (event) {
-     var button = $(event.relatedTarget) // Button that triggered the modal
-     var description = button.data('task-description')
-     var duration = button.data('task-duration')
-     var modal = $(this)
-     modal.find('.task-description').val(description)
-     modal.find('.task-duration').val(duration)
- })
-
- $('#categoryFormModal').on('show.bs.modal', function (event) {
-     var modal = $(this)
-     modal.find('.category-name').val('')
- })
-</script>
-
-<% @tasks_by_week.keys.sort.reverse.each_with_index do |week, week_idx| %>
+<% current_monday =  Date.today.beginning_of_week %>
+<% Date.today.cweek.downto(1).each_with_index do |week, week_idx| %>
+    <% monday = current_monday - 7 * week_idx %>
     <div class="card mt-3">
 	<div class="card-header" id="header-week-<%= week %>">
 	    <h5 class="mb-0">
 		<button class="btn btn-link text-muted" data-toggle="collapse" data-target="#collapse-week-<%= week %>" aria-expanded="true" aria-controls="collapse-week-<%= week %>">
-		    <% dates = @tasks_by_week[week].map(&:date) %>
-		    <%= dates.first.strftime "%B %d" %> - <%= dates.last.strftime "%B %d" %>, <%= dates.first.strftime "%Y" %>
+		    <%= monday.strftime "%B %d" %> - <%= (monday + 5).strftime "%B %d" %>, <%= monday.strftime "%Y" %>
 		</button>
 	    </h5>
 	</div>
 	<div id="collapse-week-<%= week %>" class="collapse <%= 'show' if week_idx.zero? %>" aria-labelledby="header-week-<%= week %>" data-parent="#accordion">
 	    <div class="card-group">
-		<% @tasks_by_week[week].sort_by(&:date).group_by(&:date).each do |date, tasks| %>
+		<% (0..4).each do |day_idx| %>
+		    <% date = monday + day_idx %>
+		    <% tasks = (@tasks_by_week[week] || []).select { |task| task.date == date } %>
 		    <div class="card">
 			<div class="card-title">
-			    <h5><%= date.strftime "%A" %></h5>
+			    <h5><%= date.strftime("%A") %></h5>
 			    <% pensum = Task.relative_day_pensum(tasks) %>
 			    <div class="progress">
 				<div class="progress-bar progress-bar-striped <%= 'bg-success' unless pensum < 100 %>" role="progressbar" style="width: <%= pensum %>%" aria-valuenow="<%= pensum %>" aria-valuemin="0" aria-valuemax="100">
@@ -97,6 +31,13 @@
 			    </div>
 			</div>
 			<div class="card-body">
+			    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal"
+				    data-task-category-id="<%= @categories.first.id %>"
+				    data-task-description=""
+				    data-task-duration="1"
+				    data-task-date="<%= date.as_json %>">
+				Add Task
+			    </button>
 			    <ul id="tasks-<%= date.as_json %>" class="list-group">
 				<%= render tasks %>
 			    </ul>
@@ -105,52 +46,11 @@
 		<% end %>
 	    </div>
 	    <div class="card-footer">
-		<%= render partial: 'summary', locals: { tasks: @tasks_by_week[week] } %>
+		<%= render partial: 'summary', locals: { tasks: @tasks_by_week[week] || [] } %>
 	    </div>
 	</div>
     </div>
 <% end %>
 
-<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="taskFormModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-	<div class="modal-content">
-	    <div class="modal-header">
-		<h5 class="modal-title" id="taskFormModalLabel">New Task</h5>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		</button>
-	    </div>
-	    <%= form_with(model: @sample_task) do |f| %>
-		<div class="modal-body">
-		    <div id="edit-task" class="form-group">
-			<%= f.collection_select :category_id, @categories.sort_by(&:name), :id, :name, {}, class: "form-control form-control-sm task-category-id" %>
-			<%= f.text_field :description, class: "form-control form-control-sm task-description", placeholder: "Description" %>
-			<%= f.number_field :duration_in_hours, class: "form-control form-control-sm task-duration", placeholder: "Duration (in hours)" %>
-			<%= f.date_field :date, class: "form-control form-control-sm task-date" %>
-		    </div>
-		</div>
-		<div class="modal-footer">
-		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		    <%= f.submit 'Update', class: 'btn btn-outline-primary' %>
-		</div>
-	    <% end %>
-	</div>
-    </div>
-</div>
-
-<script>
- $('#editTaskModal').on('show.bs.modal', function (event) {
-     var button = $(event.relatedTarget) // Button that triggered the modal
-     var action = button.data('task-form-action')
-     var category = button.data('task-category-id')
-     var description = button.data('task-description')
-     var duration = button.data('task-duration')
-     var date = button.data('task-date')
-     var modal = $(this)
-     modal.find('form').attr('action', action)
-     modal.find('.task-category-id').val(category)
-     modal.find('.task-description').val(description)
-     modal.find('.task-duration').val(duration)
-     modal.find('.task-date').val(date)
- })
-</script>
+<%= render partial: 'form_modal', locals: { task: @sample_task, modal_id: 'editTaskModal' } %>
+<%= render partial: 'form_modal', locals: { task: @new_task, modal_id: 'newTaskModal' } %>

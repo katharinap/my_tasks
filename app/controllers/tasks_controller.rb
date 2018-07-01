@@ -6,7 +6,7 @@ class TasksController < ApplicationController
     @category = Category.new
     @tasks_by_week = Task.all.includes(:category).group_by { |t| t.date.cweek }
     @sample_task = Task.first
-    @task = Task.new(date: Date.today)
+    @new_task = Task.new(date: Date.today)
   end
 
   def create

@@ -30,7 +30,7 @@ class Task < ApplicationRecord
     end
 
     def duration_in_days(tasks)
-      tasks.map(&:duration_in_hours).reduce(:+) / 8.0
+      tasks.map(&:duration_in_hours).reduce(0, :+) / 8.0
     end
   end
 end

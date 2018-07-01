@@ -1,4 +1,9 @@
-var currentOptions = $('#task_category_id').html();
-var newOption = '<option value="<%= @category.id %>"><%= @category.name %></option>';
-$('#task_category_id').html(currentOptions + newOption);
-$("#categoryFormModal").modal("hide");
+$('.task-category-id').each(function(i, obj) {
+  var currentOptions = $(this).html();
+  var newOption = '<option value="<%= @category.id %>"><%= @category.name %></option>';
+  $(this).html(currentOptions + newOption);
+});
+
+$('.modal').each(function(i, obj) {
+  $(this).modal("hide");
+})

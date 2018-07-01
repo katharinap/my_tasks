@@ -1,2 +1,5 @@
 $("<%= escape_javascript(render @task) %>").appendTo("#tasks-<%= @task.date.as_json %>");
-$("#taskFormModal").modal("hide");
+
+$('.modal').each(function(i, obj) {
+  $(this).modal("hide");
+})

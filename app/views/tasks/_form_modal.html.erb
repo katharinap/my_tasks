@@ -1,0 +1,43 @@
+<div class="modal fade" id="<%= modal_id %>" tabindex="-1" role="dialog" aria-labelledby="taskFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	    <div class="modal-header">
+		<h5 class="modal-title" id="<%= modal_id %>Label"><%= task.persisted? ? 'Edit Task' : 'New Task' %></h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		</button>
+	    </div>
+	    <%= form_with(model: task) do |f| %>
+		<div class="modal-body">
+		    <div id="edit-task" class="form-group">
+			<%= f.collection_select :category_id, @categories.sort_by(&:name), :id, :name, {}, class: "form-control form-control-sm task-category-id" %>
+			<%= f.text_field :description, class: "form-control form-control-sm task-description", placeholder: "Description" %>
+			<%= f.number_field :duration_in_hours, class: "form-control form-control-sm task-duration", placeholder: "Duration (in hours)", :step => 0.05 %>
+			<%= f.date_field :date, class: "form-control form-control-sm task-date" %>
+		    </div>
+		</div>
+		<div class="modal-footer">
+		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		    <%= f.submit task.persisted? ? 'Update' : 'Create', class: 'btn btn-outline-primary' %>
+		</div>
+	    <% end %>
+	</div>
+    </div>
+</div>
+
+<script>
+ $('#<%= modal_id %>').on('show.bs.modal', function (event) {
+     var button = $(event.relatedTarget) // Button that triggered the modal
+     var action = button.data('task-form-action')
+     var category = button.data('task-category-id')
+     var description = button.data('task-description')
+     var duration = button.data('task-duration')
+     var date = button.data('task-date')
+     var modal = $(this)
+     modal.find('form').attr('action', action)
+     modal.find('.task-category-id').val(category)
+     modal.find('.task-description').val(description)
+     modal.find('.task-duration').val(duration)
+     modal.find('.task-date').val(date)
+ })
+</script>
