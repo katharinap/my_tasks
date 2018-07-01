@@ -73,28 +73,37 @@
  })
 </script>
 
-<!-- create one card-group per week?, or two plus summary? -->
-<% @tasks.sort_by(&:date).reverse.group_by(&:date).each do |date, tasks| %>
+<% @tasks_by_week.keys.sort.reverse.each_with_index do |week, week_idx| %>
     <div class="card">
-	<div class="card-title">
-	    <div class="row">
-		<div class="col-2">
-		    <h5><%= date.strftime "%a, %B %d %Y" %></h5>
-		</div>
-		<div class="col-4">
-		    <% pensum = Task.relative_day_pensum(tasks) %>
-		    <div class="progress">
-			<div class="progress-bar progress-bar-striped <%= 'bg-success' unless pensum < 100 %>" role="progressbar" style="width: <%= pensum %>%" aria-valuenow="<%= pensum %>" aria-valuemin="0" aria-valuemax="100">
-			    <%= pensum %>%
+	<div class="card-header" id="header-week-<%= week %>">
+	    <h5 class="mb-0">
+		<button class="btn btn-link text-muted" data-toggle="collapse" data-target="#collapse-week-<%= week %>" aria-expanded="true" aria-controls="collapse-week-<%= week %>">
+		    <% dates = @tasks_by_week[week].map(&:date) %>
+		    <%= dates.first.strftime "%B %d" %> - <%= dates.last.strftime "%B %d" %>, <%= dates.first.strftime "%Y" %>
+		</button>
+	    </h5>
+	</div>
+	<div id="collapse-week-<%= week %>" class="collapse <%= 'show' if week_idx.zero? %>" aria-labelledby="header-week-<%= week %>" data-parent="#accordion">
+	    <div class="card-group">
+		<% @tasks_by_week[week].sort_by(&:date).group_by(&:date).each do |date, tasks| %>
+		    <div class="card">
+			<div class="card-title">
+			    <h5><%= date.strftime "%A" %></h5>
+			    <% pensum = Task.relative_day_pensum(tasks) %>
+			    <div class="progress">
+				<div class="progress-bar progress-bar-striped <%= 'bg-success' unless pensum < 100 %>" role="progressbar" style="width: <%= pensum %>%" aria-valuenow="<%= pensum %>" aria-valuemin="0" aria-valuemax="100">
+				    <%= pensum %>%
+				</div>
+			    </div>
+			</div>
+			<div class="card-body">
+			    <ul id="tasks-<%= date.as_json %>" class="list-group">
+				<%= render tasks %>
+			    </ul>
 			</div>
 		    </div>
-		</div>
+		<% end %>
 	    </div>
-	</div>
-	<div class="card-body">
-	    <ul id="tasks-<%= date.as_json %>">
-		<%= render tasks %>
-	    </ul>
 	</div>
     </div>
 <% end %>
@@ -108,7 +117,7 @@
 		    <span aria-hidden="true">&times;</span>
 		</button>
 	    </div>
-	    <%= form_with(model: @tasks.first) do |f| %>
+	    <%= form_with(model: @sample_task) do |f| %>
 		<div class="modal-body">
 		    <div id="edit-task" class="form-group">
 			<%= f.collection_select :category_id, @categories.sort_by(&:name), :id, :name, {}, class: "form-control form-control-sm task-category-id" %>

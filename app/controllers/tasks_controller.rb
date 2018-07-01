@@ -4,7 +4,8 @@ class TasksController < ApplicationController
   def index
     @categories = Category.all
     @category = Category.new
-    @tasks = Task.all
+    @tasks_by_week = Task.all.includes(:category).group_by { |t| t.date.cweek }
+    @sample_task = Task.first
     @task = Task.new(date: Date.today)
   end
 
