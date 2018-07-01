@@ -10,6 +10,8 @@ module ApplicationHelper
                    'text-info'
                  end
     icon = /support/i.match?(name) ? 'user-tag' : 'code'
-    content_tag(:i, '', class: "fas fa-#{icon} #{text_class}", title: name)
+    class_str = "fas fa-#{icon} #{text_class} fa-lg"
+
+    content_tag(:i, '', class: class_str, title: name)
   end
 end

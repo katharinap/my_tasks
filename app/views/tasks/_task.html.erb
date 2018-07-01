@@ -1,18 +1,36 @@
 <div id="task-<%= task.id %>">
     <li class="list-group-item list-group-item-action">
-    <%= category_tag(task.category.name) %>
-    <%= task.description %>
-    <%= task.duration_in_hours %>
-    <a href="#" data-toggle="modal" data-target="#editTaskModal" class="text-muted"
-       data-task-form-action="<%= task_path(task, method: :put) %>"
-       data-task-category-id="<%= task.category_id %>"
-       data-task-description="<%= task.description %>"
-       data-task-duration="<%= task.duration_in_hours %>"
-       data-task-date="<%= task.date.as_json %>">
-      <i class="fas fa-pen" title="Edit"></i>
-    </a>
-    <%= link_to task, method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: 'text-muted' do %>
-      <i class="fas fa-trash" title="Delete"></i>
-    <% end %>
-  </li>
+	<div class="row">
+	    <div class="col-3">
+		<%= category_tag(task.category.name) %>
+	    </div>
+	    <div class="col-9">
+		<%= task.description %>
+	    </div>
+	</div>
+	<div>
+	    <div class="row">
+		<div class="col-3">
+		    <small>
+			<%= task.duration_in_hours %>h
+		    </small>
+		</div>
+		<div class="col-3 offset-6">
+		    <small>
+		    <a href="#" data-toggle="modal" data-target="#editTaskModal" class="text-muted"
+		       data-task-form-action="<%= task_path(task, method: :put) %>"
+		       data-task-category-id="<%= task.category_id %>"
+		       data-task-description="<%= task.description %>"
+		       data-task-duration="<%= task.duration_in_hours %>"
+		       data-task-date="<%= task.date.as_json %>">
+			<i class="fas fa-pen" title="Edit"></i>
+		    </a>
+		    <%= link_to task, method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: 'text-muted' do %>
+			<i class="fas fa-trash" title="Delete"></i>
+		    <% end %>
+		    </small>
+		</div>
+	    </div>
+	</div>
+    </li>
 </div>
