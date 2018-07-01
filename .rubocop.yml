@@ -14,4 +14,8 @@ Style/Documentation:
 Metrics/LineLength:
   Exclude:
     - 'spec/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
     

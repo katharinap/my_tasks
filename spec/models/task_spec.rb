@@ -24,4 +24,30 @@ RSpec.describe Task, type: :model do
       expect(Task.new(category_id: category.id, date: Date.today, description: 'step two')).to be_valid
     end
   end
+
+  context 'date methods' do
+    let(:category) { Category.create(name: 'Something') }
+
+    def create_tasks
+      %w[one two three].each { |desc| category.tasks.create(description: "task #{desc}", date: Date.new(2018, 6, 27)) }
+      %w[one].each { |desc| category.tasks.create(description: "task #{desc}", date: Date.new(2018, 6, 28)) }
+      %w[one].each { |desc| category.tasks.create(description: "task #{desc}", date: Date.new(2018, 6, 29)) }
+    end
+
+    before :each do
+      create_tasks
+    end
+
+    describe '.for_date' do
+      it 'returns the tasks assigned to the given date' do
+        expect(Task.for_date(Date.new(2018, 6, 27)).size).to eq(3)
+      end
+    end
+
+    describe '.for_date_range' do
+      it 'returns the tasks assigned to the given date range' do
+        expect(Task.for_date_range(Date.new(2018, 6, 27), Date.new(2018, 6, 28)).size).to eq(4)
+      end
+    end
+  end
 end

@@ -14,7 +14,11 @@
 
 class Task < ApplicationRecord
   belongs_to :category
-  has_many :activities
   validates :description, presence: true
   validates :date, presence: true
+
+  scope :for_date, ->(date) { where('date = ?', date) }
+  # rubocop:disable Metrics/LineLength
+  scope :for_date_range, ->(first, last) { where('date >= ? AND date <= ?', first, last) }
+  # rubocop:enable Metrics/LineLength
 end
