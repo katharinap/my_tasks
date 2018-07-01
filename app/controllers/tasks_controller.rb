@@ -34,6 +34,14 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = Task.destroy(params[:id])
+
+    respond_to do |f|
+      f.js
+    end
+  end
+
   private
 
   def task_params

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tasks, only: %i[index create update]
+  resources :tasks, except: %i[show edit new]
   resources :categories, only: %i[create]
   root to: 'tasks#index'
 end

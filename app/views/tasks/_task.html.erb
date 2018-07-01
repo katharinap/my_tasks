@@ -1,16 +1,18 @@
-<li>
-  <div id="task-<%= task.id %>">
+<div id="task-<%= task.id %>">
+  <li>
     <%= category_tag(task.category.name) %>
     <%= task.description %>
     <%= task.duration_in_hours %>
-      <a href="#" data-toggle="modal" data-target="#editTaskModal"
-	 data-task-form-action="<%= task_path(task, method: :put) %>"
-	 data-task-category-id="<%= task.category_id %>"
-	 data-task-description="<%= task.description %>"
-	 data-task-duration="<%= task.duration_in_hours %>"
-	 data-task-date="<%= task.date.as_json %>">
-	<i class="fas fa-pen" title="Edit">
-	</i>
-      </a>
-  </div>
-</li>
+    <a href="#" data-toggle="modal" data-target="#editTaskModal" class="text-muted"
+       data-task-form-action="<%= task_path(task, method: :put) %>"
+       data-task-category-id="<%= task.category_id %>"
+       data-task-description="<%= task.description %>"
+       data-task-duration="<%= task.duration_in_hours %>"
+       data-task-date="<%= task.date.as_json %>">
+      <i class="fas fa-pen" title="Edit"></i>
+    </a>
+    <%= link_to task, method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: 'text-muted' do %>
+      <i class="fas fa-trash" title="Delete"></i>
+    <% end %>
+  </li>
+</div>
