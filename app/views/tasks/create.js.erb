@@ -1,5 +1,7 @@
 $("<%= escape_javascript(render @task) %>").appendTo("#tasks-<%= @task.date.as_json %>");
 
+updateProgressBar("<%= @task.date.as_json %>");
+
 $('.modal').each(function(i, obj) {
   $(this).modal("hide");
 })

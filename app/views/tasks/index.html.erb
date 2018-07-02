@@ -1,6 +1,8 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCategoryModal">
-    Add Category
-</button>
+<div class="clearfix">
+    <button type="button" class="btn btn-outline-primary btn-sm float-right mt-1" data-toggle="modal" data-target="#newCategoryModal">
+	Add Category
+    </button>
+</div>
 
 <%= render partial: 'categories/form_modal', locals: { category: @category, modal_id: 'newCategoryModal' } %>
 
@@ -23,21 +25,18 @@
 		    <div class="card">
 			<div class="card-title">
 			    <h5><%= date.strftime("%A") %></h5>
-			    <% pensum = Task.relative_day_pensum(tasks) %>
-			    <div class="progress">
-				<div class="progress-bar progress-bar-striped <%= 'bg-success' unless pensum < 100 %>" role="progressbar" style="width: <%= pensum %>%" aria-valuenow="<%= pensum %>" aria-valuemin="0" aria-valuemax="100">
-				    <%= pensum %>%
-				</div>
-			    </div>
+			    <%= render partial: 'progress_bar', locals: { progress: Task.relative_day_pensum(tasks), id: "progress-#{date.as_json}" } %>
 			</div>
 			<div class="card-body">
-			    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal"
-				    data-task-category-id="<%= @categories.first.id %>"
-				    data-task-description=""
-				    data-task-duration="1"
-				    data-task-date="<%= date.as_json %>">
-				Add Task
-			    </button>
+			    <div class="clearfix">
+				<button type="button" class="btn btn-outline-primary btn-sm mb-1 mt-0 float-right" data-toggle="modal" data-target="#newTaskModal"
+					data-task-category-id="<%= @categories.first.id %>"
+					data-task-description=""
+					data-task-duration="1"
+					data-task-date="<%= date.as_json %>">
+				    Add Task
+				</button>
+			    </div>
 			    <ul id="tasks-<%= date.as_json %>" class="list-group">
 				<%= render tasks %>
 			    </ul>
@@ -54,3 +53,28 @@
 
 <%= render partial: 'form_modal', locals: { task: @sample_task, modal_id: 'editTaskModal' } %>
 <%= render partial: 'form_modal', locals: { task: @new_task, modal_id: 'newTaskModal' } %>
+
+<script>
+
+ function updateProgressBar(date) {
+     console.log('updateProgressBar', date)
+     var progress = 0;
+     $("#tasks-" + date +" li").each(function(i, obj) {
+	 var duration = $(this).attr("data-task-duration");
+	 progress += duration * 100;
+     });
+
+     $("#progress-" + date).attr("style", "width:" + progress + "%");
+     $("#progress-" + date).attr("aria-valuenow", progress);
+     $("#progress-" + date).text(Math.round(progress) + "%");
+     if(progress >= 100) {
+	 $("#progress-" + date).removeClass('bg-primary');
+	 $("#progress-" + date).addClass('bg-success');
+     } else {
+	 $("#progress-" + date).removeClass('bg-success');
+	 $("#progress-" + date).addClass('bg-primary');
+     }
+     
+     
+ }
+</script>

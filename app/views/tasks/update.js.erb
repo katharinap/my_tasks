@@ -1,5 +1,7 @@
 $("#task-<%= @task.id %>").html($("<%= escape_javascript(render @task) %>"));
 
-$('.modal').each(function(i, obj) {
+updateProgressBar("<%= @task.date.as_json %>");
+
+$(".modal").each(function(i, obj) {
   $(this).modal("hide");
-})
+});
