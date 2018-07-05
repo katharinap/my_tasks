@@ -4,7 +4,7 @@ module ApplicationHelper
   def category_tag(name)
     text_class = case name
                  when /cvsf/i then 'text-primary'
-                 when /blender/i then 'text-danger'
+                 when /blender/i then 'text-warning'
                  when /dfi/i then 'text-success'
                  else
                    'text-info'

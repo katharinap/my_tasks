@@ -1,5 +1,5 @@
 <div class="clearfix">
-    <button type="button" class="btn btn-outline-primary btn-sm float-right mt-1" data-toggle="modal" data-target="#newCategoryModal">
+    <button type="button" class="btn btn-primary btn-sm float-right mt-1" data-toggle="modal" data-target="#newCategoryModal">
 	Add Category
     </button>
 </div>
@@ -9,10 +9,10 @@
 <% current_monday =  Date.today.beginning_of_week %>
 <% Date.today.cweek.downto(1).each_with_index do |week, week_idx| %>
     <% monday = current_monday - 7 * week_idx %>
-    <div class="card mt-3">
-	<div class="card-header" id="header-week-<%= week %>">
+    <div class="card mt-3 border-primary">
+	<div class="card-header bg-primary" id="header-week-<%= week %>">
 	    <h5 class="mb-0">
-		<button class="btn btn-link text-muted" data-toggle="collapse" data-target="#collapse-week-<%= week %>" aria-expanded="true" aria-controls="collapse-week-<%= week %>">
+		<button class="btn btn-link text-white" data-toggle="collapse" data-target="#collapse-week-<%= week %>" aria-expanded="true" aria-controls="collapse-week-<%= week %>">
 		    <%= monday.strftime "%B %d" %> - <%= (monday + 5).strftime "%B %d" %>, <%= monday.strftime "%Y" %>
 		</button>
 	    </h5>
@@ -29,7 +29,7 @@
 			</div>
 			<div class="card-body">
 			    <div class="clearfix">
-				<button type="button" class="btn btn-outline-primary btn-sm mb-1 mt-0 float-right" data-toggle="modal" data-target="#newTaskModal"
+				<button type="button" class="btn btn-primary btn-sm mb-1 mt-0 float-right" data-toggle="modal" data-target="#newTaskModal"
 					data-task-category-id="<%= @categories.first.id %>"
 					data-task-description=""
 					data-task-duration="1"
@@ -44,7 +44,7 @@
 		    </div>
 		<% end %>
 	    </div>
-	    <div class="card-footer">
+	    <div class="card-footer border-primary">
 		<%= render partial: 'summary', locals: { tasks: @tasks_by_week[week] || [] } %>
 	    </div>
 	</div>
@@ -67,13 +67,13 @@
      $("#progress-" + date).attr("style", "width:" + progress + "%");
      $("#progress-" + date).attr("aria-valuenow", progress);
      $("#progress-" + date).text(Math.round(progress) + "%");
-     if(progress >= 100) {
-	 $("#progress-" + date).removeClass('bg-primary');
-	 $("#progress-" + date).addClass('bg-success');
-     } else {
-	 $("#progress-" + date).removeClass('bg-success');
-	 $("#progress-" + date).addClass('bg-primary');
-     }
+     /* if(progress >= 100) {
+	$("#progress-" + date).removeClass('bg-info');
+	$("#progress-" + date).addClass('bg-primary');
+      * } else {
+	$("#progress-" + date).removeClass('bg-primary');
+	$("#progress-" + date).addClass('bg-info');
+      * } */
      
      
  }
