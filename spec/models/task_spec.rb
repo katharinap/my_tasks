@@ -16,8 +16,10 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
+  let(:user) { User.create(email: 'me@example.com', password: 'abc123!') }
+
   describe '.new' do
-    let(:category) { Category.create(name: 'Something') }
+    let(:category) { Category.create(name: 'Something', user_id: user.id) }
 
     it 'does not allow to create a task without a description, date or duration' do
       expect(Task.new(category_id: category.id, duration_in_hours: 1.0, date: Date.today)).not_to be_valid
@@ -28,7 +30,7 @@ RSpec.describe Task, type: :model do
   end
 
   context 'date methods' do
-    let(:category) { Category.create(name: 'Something') }
+    let(:category) { Category.create(name: 'Something', user_id: user.id) }
 
     def create_tasks
       %w[one two three].each { |desc| category.tasks.create(description: "task #{desc}", duration_in_hours: 1.0, date: Date.new(2018, 6, 27)) }

@@ -30,10 +30,10 @@
 			<div class="card-body">
 			    <div class="clearfix">
 				<button type="button" class="btn btn-primary btn-sm mb-1 mt-0 float-right" data-toggle="modal" data-target="#newTaskModal"
-					data-task-category-id="<%= @categories.first.id %>"
-					data-task-description=""
-					data-task-duration="1"
-					data-task-date="<%= date.as_json %>">
+					data-task-category-id="<%= @categories.first&.id %>"
+					      data-task-description=""
+					      data-task-duration="1"
+					      data-task-date="<%= date.as_json %>">
 				    Add Task
 				</button>
 			    </div>
@@ -51,7 +51,7 @@
     </div>
 <% end %>
 
-<%= render partial: 'form_modal', locals: { task: @sample_task, modal_id: 'editTaskModal' } %>
+<%= render partial: 'form_modal', locals: { task: @sample_task, modal_id: 'editTaskModal' } if @sample_task %>
 <%= render partial: 'form_modal', locals: { task: @new_task, modal_id: 'newTaskModal' } %>
 
 <script>

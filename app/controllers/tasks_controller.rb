@@ -2,10 +2,11 @@
 
 class TasksController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.includes(:tasks).where(user: current_user)
     @category = Category.new
-    @tasks_by_week = Task.all.includes(:category).group_by { |t| t.date.cweek }
-    @sample_task = Task.first
+    tasks = @categories.map(&:tasks).flatten
+    @tasks_by_week = tasks.group_by { |t| t.date.cweek }
+    @sample_task = tasks.first
     @new_task = Task.new(date: Date.today)
   end
 
