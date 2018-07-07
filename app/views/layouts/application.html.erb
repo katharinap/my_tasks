@@ -16,6 +16,46 @@
     </head>
 
     <body class="container-fluid">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	    <a class="navbar-brand" href="#">
+		<i class="fas fa-tasks fa-lg"></i> 
+	    </a>
+	    <ul class="navbar-nav mr-auto">
+		<%= yield :left_navbar %>
+	    </ul>
+	    <div>
+		<ul class="navbar-nav">
+		    <% if user_signed_in? %>
+			Logged in as <strong class="ml-1 mr-1"><%= current_user.email %></strong>.
+			<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+			<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+		    <% else %>
+			<li class="nav-item">
+			    <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+			</li>
+			<li class="nav-item">
+			    <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+			</li>
+		    <% end %>
+		</ul>
+	    </div>
+	</nav>
+	<% if notice %>
+	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+		<%= notice %>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		</button>
+	    </div>
+	<% end %>
+	<% if alert %>
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<%= alert %>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		</button>
+	    </div>
+	<% end %>
 	<%= yield %>
     </body>
 </html>
