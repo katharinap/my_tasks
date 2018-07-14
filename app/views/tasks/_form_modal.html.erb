@@ -12,7 +12,7 @@
 		    <div id="edit-task" class="form-group">
 			<%= f.collection_select :category_id, @categories.sort_by(&:name), :id, :name, {}, class: "form-control form-control-sm task-category-id" %>
 			<%= f.text_field :description, class: "form-control form-control-sm task-description", placeholder: "Description" %>
-			<%= f.number_field :duration_in_hours, class: "form-control form-control-sm task-duration", placeholder: "Duration (in hours)", :step => 0.05 %>
+			<%= f.number_field :duration_in_hours, class: "form-control form-control-sm task-duration", placeholder: "Duration (in hours)", :step => 0.5 %>
 			<%= f.date_field :date, class: "form-control form-control-sm task-date" %>
 		    </div>
 		</div>
