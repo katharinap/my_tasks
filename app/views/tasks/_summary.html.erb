@@ -1,8 +1,10 @@
 <h5>Summary</h5>
 <% sum = 0 %>
 <ul class="list-group">
-    <% tasks.group_by(&:category).each do |category, ctasks| %>
-	<% days = Task.duration_in_days(ctasks) %>
+    <% tasks_by_category = tasks.group_by(&:category) %>
+    <% tasks_by_category.keys.sort_by(&:name).each do |category| %>
+	<% category_tasks = tasks_by_category[category] %>
+	<% days = Task.duration_in_days(category_tasks) %>
 	<% sum += days %>
 	<li class="list-group-item list-group-item-action">
 	    <div class="row">
