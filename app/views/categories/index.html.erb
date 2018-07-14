@@ -1,0 +1,26 @@
+<% content_for :left_navbar do %>
+    <li class="nav-item">
+	<%= link_to "Overview", tasks_path %>
+    </li>
+<% end %>
+
+<%= render partial: 'form_modal', locals: { category: @new_category, modal_id: 'newCategoryModal' } %>
+
+<table class="table table-striped">
+    <thead>
+	<th>Name</th>
+	<th>Icon</th>
+	<th/>
+	<th/>
+    </thead>
+    <tbody id="categories">
+	<%= render @categories.sort_by(&:name) %>
+    </tbody>
+</table>
+
+<%= render partial: 'form_modal', locals: { category: @categories.first, modal_id: 'editCategoryModal' } if @categories.first %>
+
+<button type="button" class="btn btn-primary btn-sm mb-1 mt-0" data-toggle="modal" data-target="#newCategoryModal"
+	data-category-icon="<%= @new_category.icon %>" data-category-name="<%= @new_category.name %>">
+    Add Category
+</button>

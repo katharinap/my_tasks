@@ -1,0 +1,5 @@
+$("#categories").html("<%= j (render @categories.sort_by(&:name)) %>");
+
+$(".modal").each(function(i, obj) {
+  $(this).modal("hide");
+});

@@ -2,7 +2,7 @@
     <li class="list-group-item list-group-item-action" data-task-duration="<%= Task.duration_in_days([task]) %>">
 	<div class="row">
 	    <div class="col-3">
-		<%= category_tag(task.category.name) %>
+		<%= category_tag(task.category) %>
 	    </div>
 	    <div class="col-9">
 		<%= task.description %>

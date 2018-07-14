@@ -1,10 +1,8 @@
 <% content_for :left_navbar do %>
     <li class="nav-item">
-	<a class="navbar-link" data-toggle="modal" data-target="#newCategoryModal" href="#">Add Category</a>
+	<%= link_to "Manage Categories", categories_path %>
     </li>
 <% end %>
-
-<%= render partial: 'categories/form_modal', locals: { category: @category, modal_id: 'newCategoryModal' } %>
 
 <% current_monday =  Date.today.beginning_of_week %>
 <% Date.today.cweek.downto(1).each_with_index do |week, week_idx| %>

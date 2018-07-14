@@ -1,8 +1,8 @@
-<div class="modal fade" id="<%= modal_id %>" tabindex="-1" role="dialog" aria-labelledby="newCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="<%= modal_id %>" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
 	<div class="modal-content">
 	    <div class="modal-header">
-		<h5 class="modal-title" id="<%= modal_id %>Label">New Category</h5>
+		<h5 class="modal-title" id="<%= modal_id %>Label"><%= category.persisted? ? 'Edit Category' : 'New Category' %></h5>
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		    <span aria-hidden="true">&times;</span>
 		</button>
@@ -12,11 +12,15 @@
 		<div class="modal-body">
 		    <div id="new-category" class="form-group">
 			<%= f.text_field :name, class: "form-control form-control-sm category-name", placeholder: "Name" %>
+			<%= f.text_field :icon, class: "form-control form-control-sm category-icon", placeholder: "Icon" %>
+			<div class="float-right">
+			    <%= link_to 'Available Icons', 'https://fontawesome.com/icons', target: '_blank' %>
+			</div>
 		    </div>
 		</div>
 		<div class="modal-footer">
 		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		    <%= f.submit 'Add Category', class: 'btn btn-primary' %>
+		    <%= f.submit category.persisted? ? 'Update' : 'Create', class: 'btn btn-primary' %>
 		</div>
 	    <% end %>
 	</div>
@@ -25,7 +29,13 @@
 
 <script>
  $('#<%= modal_id %>').on('show.bs.modal', function (event) {
+     var button = $(event.relatedTarget) // Button that triggered the modal
+     var action = button.data('category-form-action')
+     var name = button.data('category-name')
+     var icon = button.data('category-icon')
      var modal = $(this)
-     modal.find('.category-name').val('')
+     modal.find('form').attr('action', action)
+     modal.find('.category-name').val(name)
+     modal.find('.category-icon').val(icon)
  })
 </script>

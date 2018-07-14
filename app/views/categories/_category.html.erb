@@ -1,1 +1,16 @@
-<li><%= category.name %></li>
+<tr id="category-<%= category.id %>">
+    <td><%= category.name %></td>
+    <td><%= category_tag(category) %></td>
+    <td>
+	<a href="#" data-toggle="modal" data-target="#editCategoryModal"
+	   data-category-name="<%= category.name %>"
+	   data-category-icon="<%= category.icon %>">
+	    <i class="fas fa-pen text-muted" title="Edit"></i>
+	</a>
+	<% unless category.tasks.any? %>
+	    <%= link_to category, method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: 'text-muted' do %>
+		<i class="fas fa-trash" title="Delete"></i>
+	    <% end %>
+	<% end %>
+    </td>
+</tr>

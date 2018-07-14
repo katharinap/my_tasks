@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_07_225833) do
+ActiveRecord::Schema.define(version: 2018_07_13_033736) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.string "icon", default: "smile"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 

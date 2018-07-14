@@ -1,8 +1,4 @@
-$('.task-category-id').each(function(i, obj) {
-  var currentOptions = $(this).html();
-  var newOption = '<option value="<%= @category.id %>"><%= @category.name %></option>';
-  $(this).html(currentOptions + newOption);
-});
+$('#categories').html("<%= j (render @categories.sort_by(&:name)) %>");
 
 $('.modal').each(function(i, obj) {
   $(this).modal("hide");
