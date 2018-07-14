@@ -2,15 +2,11 @@
 
 module ApplicationHelper
   def category_tag(category)
-    text_class = case category.name
-                 when /cvsf/i then 'text-primary'
-                 when /blender/i then 'text-warning'
-                 when /dfi/i then 'text-success'
-                 else
-                   'text-info'
-                 end
-    class_str = "fas fa-#{category.icon} #{text_class} fa-lg"
+    icon_tag(category.icon, category.icon_color, category.name)
+  end
 
-    content_tag(:i, '', class: class_str, title: category.name)
+  def icon_tag(icon_name, context_class = 'primary', title = '')
+    class_str = "fas fa-#{icon_name} text-#{context_class} fa-lg"
+    content_tag(:i, '', class: class_str, title: title)
   end
 end

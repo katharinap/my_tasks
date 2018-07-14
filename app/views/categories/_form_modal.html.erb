@@ -16,6 +16,14 @@
 			<div class="float-right">
 			    <%= link_to 'Available Icons', 'https://fontawesome.com/icons', target: '_blank' %>
 			</div>
+
+			<div class="icon-colors">
+			    <% Category.icon_colors.keys.each do |icon_color| %>
+				<%= f.radio_button :icon_color, icon_color, class: "category-icon-color-#{icon_color}" %>
+				<%= icon_tag('square', icon_color) %>
+				<br/>
+			    <% end %>
+			</div>
 		    </div>
 		</div>
 		<div class="modal-footer">
@@ -33,9 +41,12 @@
      var action = button.data('category-form-action')
      var name = button.data('category-name')
      var icon = button.data('category-icon')
+     var iconColor = button.data('category-icon-color')
+     console.log(iconColor)
      var modal = $(this)
      modal.find('form').attr('action', action)
      modal.find('.category-name').val(name)
      modal.find('.category-icon').val(icon)
+     modal.find('.category-icon-color-' + iconColor).prop("checked", true)
  })
 </script>

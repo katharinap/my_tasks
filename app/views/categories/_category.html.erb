@@ -3,8 +3,10 @@
     <td><%= category_tag(category) %></td>
     <td>
 	<a href="#" data-toggle="modal" data-target="#editCategoryModal"
+	   data-category-form-action="<%= category_path(category, method: :put) %>"
 	   data-category-name="<%= category.name %>"
-	   data-category-icon="<%= category.icon %>">
+	   data-category-icon="<%= category.icon %>"
+	   data-category-icon-color="<%= category.icon_color %>">
 	    <i class="fas fa-pen text-muted" title="Edit"></i>
 	</a>
 	<% unless category.tasks.any? %>

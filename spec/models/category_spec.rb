@@ -9,6 +9,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
+#  icon       :string           default("smile")
+#  icon_color :integer          default("primary")
 #
 
 require 'rails_helper'
