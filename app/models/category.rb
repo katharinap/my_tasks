@@ -16,7 +16,7 @@
 class Category < ApplicationRecord
   belongs_to :user
   has_many :tasks, dependent: :destroy
-  validates :name, uniqueness: true, presence: true
+  validates :name, presence: true
 
   enum icon_color: { primary: 0,
                      secondary: 1,
