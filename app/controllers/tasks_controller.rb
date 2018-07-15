@@ -7,6 +7,7 @@ class TasksController < ApplicationController
     @tasks_by_week = tasks.group_by { |t| t.date.cweek }
     @sample_task = tasks.first
     @new_task = Task.new(date: Date.today)
+    flash[:alert] = 'You need to create categories first' if @categories.empty?
   end
 
   def create
